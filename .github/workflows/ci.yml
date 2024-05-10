@@ -1,0 +1,26 @@
+---
+name: Continuous Integration
+
+on:
+    pull_request:
+        branches: [master]
+    push:
+        branches: [master]
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v3
+              with:
+                  submodules: recursive
+                  fetch-depth: 1
+
+            - name: Run Docker container
+              run: docker compose up -d
+
+            - name: Build ROS Package
+              run: |
+                  source ./.env
+                  docker exec "$CONTAINER_NAME" /bin/zsh -c "source ~/.zshrc && catkin build"
+              shell: /usr/bin/bash -e {0}
