@@ -22,5 +22,5 @@ jobs:
             - name: Build ROS Package
               run: |
                   source ./.env
-                  docker exec "$CONTAINER_NAME" /bin/zsh -c "source ~/.zshrc && catkin build"
+                  docker exec "$CONTAINER_NAME" /bin/zsh -c "source /opt/ros/noetic/setup.zsh && catkin build"
               shell: /usr/bin/bash -e {0}
