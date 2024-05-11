@@ -64,7 +64,6 @@ RUN apt-get install -y libssl-dev libusb-1.0-0-dev libudev-dev pkg-config libgtk
     git clone --depth=1 https://github.com/IntelRealSense/librealsense.git ${HOME_FOLDER}/librealsense  -b ${LIBREALSENSE_VERSION} && \
     cd ${HOME_FOLDER}/librealsense && \
     ./scripts/setup_udev_rules.sh && \
-    ./scripts/patch-realsense-ubuntu-lts-hwe.sh && \
     mkdir build && cd build && \
     cmake ../ -DBUILD_EXAMPLES=false -DBUILD_GRAPHICAL_EXAMPLES=false && \
     make install -j$(($(nproc)-1)) && \
